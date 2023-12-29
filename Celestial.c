@@ -19,3 +19,10 @@ void Plane(){
     G[planeMove+4][3] = 1;
 }
 
+void Bomb(){
+    G[bombX][bombY] = 2;
+    G[bombX][bombY-1] = 1;
+    G[bombX][bombY-2] = 1;
+}
+
+

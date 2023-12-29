@@ -25,4 +25,27 @@ void Bomb(){
     G[bombX][bombY-2] = 1;
 }
 
+void print()
+{
+	int i,j;
+	for(i=1;i<=25;i++)
+	{
+		for(j=1;j<=75;j++)
+		{
+			if(i==1||i==25)
+				printf("-");
+			else if(j==1||j==75)
+				printf("|");
+			else if(G[i][j]==1)
+				printf("*");
+            else if(G[i][j]==2)
+                printf(">");
+			else
+				printf(" ");
+		}
+		printf("\n");
+	}
+}
+
+
 

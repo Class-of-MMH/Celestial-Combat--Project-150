@@ -47,5 +47,23 @@ void print()
 	}
 }
 
+void set()
+{
+	int i,j;
+	for(i=1;i<=25;i++)
+	{
+		for(j=1;j<=75;j++)
+		{
+			G[i][j]=0;
+		}
+	}
+
+	Plane();
+
+    if(bombOn){
+        Bomb();
+    }
+}
+
 
 

@@ -65,5 +65,59 @@ void set()
     }
 }
 
+void main()
+{
+	int i,j,k;
+	srand(time(NULL));
+	planeMove = 12;
+    	set();
+	print();
+	getch();
+	system("CLS");
+	while(1)
+	{
+		set();
+		print();
+		if(GetAsyncKeyState(VK_UP))
+		{
+			if(planeMove==2)
+				continue;
+			if(G[planeMove-1][3]==0)
+			{
+				planeMove--;
+			}
+		}
+		else if(GetAsyncKeyState(VK_DOWN))
+		{
+			if(planeMove+5==25)
+				continue;
+			if(G[planeMove+5][3]==0)
+			{
+				planeMove++;
+			}
+
+		}
+        if(bombOn){
+            if(G[bombX][bombY+1]==0){
+                bombY+=3;
+            }
+            if(bombY>=75){
+                bombOn = 0;
+            }
+        }
+
+
+        if(GetAsyncKeyState(VK_SPACE) && bombOn==0){
+            bombX = planeMove + 2;
+            bombY = 5;
+            bombOn = 1;
+
+        }
+		Sleep(18);
+		system("CLS");
+	}
+	getchar();
+}
+
 
 

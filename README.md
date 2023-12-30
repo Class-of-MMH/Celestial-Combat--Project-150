@@ -23,12 +23,12 @@ A certain number of firing enemies will come . If the player survives until the 
 
 *Controls*
 
-Left, right, up and down movement. And a button will generate shooting towards the enemy obstacles.
+ Up and down movement is accessible . And space button will generate shooting towards the enemy obstacles.
 
 
 *Developing goals*
 
-The primary development goal is to implement a functional shooting game using a programming language of C++ and relevant data structure. Key features include user input handling, random enemy obstacle generation, player spaceship movement mechanics, collision detection, and scoring system.
+The primary development goal is to implement a functional shooting game using a programming language of C and relevant data structure. Key features include user input handling, random enemy obstacle generation, player spaceship movement mechanics, collision detection, and scoring system.
 
 
 

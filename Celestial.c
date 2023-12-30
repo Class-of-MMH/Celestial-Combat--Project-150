@@ -69,7 +69,7 @@ void main()
 {
 	int i,j,k;
 	srand(time(NULL));
-	planeMove = 12;
+	planeMove = 5;
     	set();
 	print();
 	getch();

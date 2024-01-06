@@ -57,6 +57,9 @@ void print() {
         printf("\n");
     }
 }
+void Score(){
+    printf("Score: %d\n",score);
+}
 void set()
 {
 	int i,j;

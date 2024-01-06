@@ -5,7 +5,6 @@
 int G[26][76], planeMove, bombY, bombX, bombOn = 0;
 int blockOn = 0, blockY, blockX, score = 0;
 
-
 void Plane() {
     G[planeMove][3] = 1;
 
@@ -73,13 +72,10 @@ void set() {
             G[i][j] = 0;
         }
     }
-
     Plane();
-
     if (bombOn) {
         Bomb();
     }
-
     if (blockOn) {
         Block();
     }
@@ -87,13 +83,12 @@ void set() {
 
 void gameOver() {
     printf("Game Over! Your Score: %d\n", score);
-
 }
 
 void main() {
     int i, j, k;
     srand(time(NULL));
-    planeMove = 12;
+    planeMove = 10;
 
     blockX = rand() % 20 + 2;
     blockY = 72;
@@ -107,6 +102,7 @@ void main() {
     while (1) {
         set();
         print();
+	    
         if (GetAsyncKeyState(VK_UP)) {
             if (planeMove == 2)
                 continue;
@@ -120,7 +116,7 @@ void main() {
                 planeMove++;
             }
         }
-
+	    
         if (bombOn) {
             if (G[bombX][bombY + 1] == 0) {
                 bombY += 3;
@@ -134,7 +130,7 @@ void main() {
                 blockOn = 0;
             }
         }
-
+	    
         if (blockOn) {
             if (G[blockX][blockY - 1] == 0) {
                 blockY -= 2;
@@ -143,21 +139,22 @@ void main() {
                 break;
             }
             if(blockY <= 3){
-				blockOn = 0;
+		blockOn = 0;
 			}
         }
-
+	    
         if (blockOn == 0) {
-            blockX = rand()%20 + 2;
+            blockX = rand() % 20 + 2;
 			blockY = 72;
 			blockOn = 1;
         }
-
+	    
         if (GetAsyncKeyState(VK_SPACE) && bombOn == 0) {
             bombX = planeMove + 2;
             bombY = 5;
             bombOn = 1;
         }
+	    
         Score();
         Sleep(18);
         system("CLS");
@@ -165,3 +162,6 @@ void main() {
     getchar();
 }
 
+//DYNAMIC_DRILLERS
+//SUST CSE 21
+//Thank you everyone!

@@ -125,6 +125,11 @@ void main()
             if(bombY>=75){
                 bombOn = 0;
             }
+		if (G[bombX][bombY] == 4 || G[bombX][bombY + 1] == 4 || G[bombX][bombY + 2] == 4) {
+                score += 10;
+                bombOn = 0;
+                blockOn = 0;
+            }
         }
 
 

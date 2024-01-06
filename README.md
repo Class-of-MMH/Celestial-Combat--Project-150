@@ -22,8 +22,7 @@ A certain number of enemies or obstacles will come and if any of those hit the p
 
 *Controls*
 
-Up and down movement. Space button will generate shooting towards the enemy obstacles.
-
+ Up and down movement is accessible . And space button will generate shooting towards the enemy obstacles.
 
 *Developing goals*
 

@@ -18,6 +18,15 @@ void Plane(){
 
     G[planeMove+4][3] = 1;
 }
+void Block() {
+    G[blockX][blockY] = 4;
+    G[blockX][blockY + 1] = 4;
+    G[blockX][blockY + 2] = 4;
+
+    G[blockX + 1][blockY] = 4;
+    G[blockX + 1][blockY + 1] = 4;
+    G[blockX + 1][blockY + 2] = 4;
+}
 
 void Bomb(){
     G[bombX][bombY] = 2;

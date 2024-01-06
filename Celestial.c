@@ -141,6 +141,11 @@ void main()
             if(blockY <= 3){
 				blockOn = 0;
 			}
+        }
+	if (blockOn == 0) {
+            blockX = rand()%20 + 2;
+			blockY = 72;
+			blockOn = 1;
         }	
 
 

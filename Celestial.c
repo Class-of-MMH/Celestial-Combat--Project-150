@@ -131,6 +131,17 @@ void main()
                 blockOn = 0;
             }
         }
+	 if (blockOn) {
+            if (G[blockX][blockY - 1] == 0) {
+                blockY -= 2;
+            } else if(G[blockX][blockY-1]==1 || G[blockX][blockY-2]==1){
+                gameOver();
+                break;
+            }
+            if(blockY <= 3){
+				blockOn = 0;
+			}
+        }	
 
 
         if(GetAsyncKeyState(VK_SPACE) && bombOn==0){

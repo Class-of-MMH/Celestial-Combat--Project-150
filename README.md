@@ -18,13 +18,11 @@ Players navigated a spaceship, battling waves of alien enemies across various le
 
 *Goals*
 
-It shouldn’t hit any obstacles incoming from the enemy or atmosphere.
-A certain number of firing enemies will come . If the player survives until the end the game will be over.
+A certain number of enemies or obstacles will come and if any of those hit the plane or spaceship the game will over.
 
 *Controls*
 
  Up and down movement is accessible . And space button will generate shooting towards the enemy obstacles.
-
 
 *Developing goals*
 

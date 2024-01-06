@@ -77,6 +77,14 @@ void set()
         Bomb();
     }
 }
+    if (blockOn) {
+        Block();
+    }
+}
+
+void gameOver() {
+    printf("Game Over! Your Score: %d\n", score);
+}
 
 void main()
 {

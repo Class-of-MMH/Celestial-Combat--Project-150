@@ -5,6 +5,9 @@
 int G[26][76], planeMove, bombY, bombX, bombOn = 0;
 int blockOn = 0, blockY, blockX, score = 0;
 
+void playBoomSound();
+void playBlockHitSound();
+
 void Plane() {
     G[planeMove][3] = 1;
 
@@ -61,6 +64,10 @@ void print() {
     }
 }
 
+void playBlockHitSound() {
+    Beep(1200, 300);
+}
+
 void Score(){
     printf("Score: %d\n",score);
 }
@@ -83,6 +90,10 @@ void set() {
 
 void gameOver() {
     printf("Game Over! Your Score: %d\n", score);
+}
+
+void playBoomSound() {
+    Beep(1000, 500);
 }
 
 void main() {
@@ -128,6 +139,7 @@ void main() {
                 score += 10;
                 bombOn = 0;
                 blockOn = 0;
+		playBoomSound();
             }
         }
 	    
@@ -135,7 +147,8 @@ void main() {
             if (G[blockX][blockY - 1] == 0) {
                 blockY -= 2;
             } else if(G[blockX][blockY-1]==1 || G[blockX][blockY-2]==1){
-                gameOver();
+                playBlockHitSound();
+		gameOver();
                 break;
             }
             if(blockY <= 3){

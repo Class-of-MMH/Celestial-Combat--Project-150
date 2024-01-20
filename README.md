@@ -41,21 +41,20 @@ Gaining experience in user input handling and game mechanics.
 
 
 
-**A.B.M.Mostakim Niloy** (Leader)
-<https://github.com/niloy200119>
+**A. B. M. Mostakim
+[Niloy](https://github.com/niloy200119). (Leader)**
 
-Registration: 2021331088
-
-
-**Abdullah Al Mamun** 
-
-Registration: 2021331086
+Registration: **2021331088**
 
 
-**Md Iftekher Haider Rakib** 
-<https://github.com/Ihrakib>
+**Abdullah Al [Mamun](https://github.com/mamun2021331086).** 
 
-Registration: 2021331092
+Registration: **2021331086**
+
+
+**Md Iftekher Haider [Rakib](https://github.com/Ihrakib).**
+
+Registration: **2021331092**
 
 
 

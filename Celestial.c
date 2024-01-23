@@ -81,6 +81,49 @@ void Plane() {
     setCellValue(planeMove + 4, 3, '*');
 
 }
+
+
+
+
+
+
+
+
+
+
+
+void printBoard(){
+    setConsoleColor(14);
+    printf("Celestial Combat:\n");
+
+    int i, j;
+    printf("\n");
+    for (i = 1; i <= 25; i++) {
+        for (j = 1; j <= 77; j++) {
+            if (i == 1 || i == 25)
+                printf("-");
+            else if (j == 1 || j == 77)
+                printf("|");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+
+}
+
+
+void playBlockHitSound() {
+    Beep(1200, 300);
+}
+
+void Score(){
+    cursor(28, 0);
+    printf("Score: %d\n",score);
+}
+
+
+
 //DYNAMIC_DRILLERS
 //SUST CSE 21
 //Thank you everyone!

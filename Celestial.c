@@ -146,13 +146,6 @@ void clearBomb(){
 
 }
 
-
-
-
-
-
-
-
 void printBoard(){
     setConsoleColor(14);
     printf("Celestial Combat:\n");
@@ -181,6 +174,40 @@ void playBlockHitSound() {
 void Score(){
     cursor(28, 0);
     printf("Score: %d\n",score);
+}
+
+void set() {
+    int i, j;
+    for (i = 1; i <= 25; i++) {
+        for (j = 1; j <= 75; j++) {
+            board[i][j] = 0;
+        }
+    }
+
+    Plane();
+    Block();
+
+    if (bombOn) {
+        Bomb();
+    }
+
+    if (blockOn) {
+        Block();
+    }
+}
+
+
+void gameOver() {
+    cursor(28, 0);
+    printf("DYNAMIC_DRILLERS\n");
+    printf("Game Over! Your Score: %d\n", score);
+
+}
+
+
+
+void playBoomSound() {
+    Beep(1000, 500);
 }
 
 

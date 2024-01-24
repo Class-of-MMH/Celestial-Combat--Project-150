@@ -82,6 +82,46 @@ void Plane() {
 
 }
 
+void Block() {
+    setConsoleColor(10);
+    board[blockX][blockY] = 4;
+    board[blockX][blockY + 1] = 4;
+    board[blockX][blockY + 2] = 4;
+
+    board[blockX + 1][blockY] = 4;
+    board[blockX + 1][blockY + 1] = 4;
+    board[blockX + 1][blockY + 2] = 4;
+
+
+    setCellValue(blockX, blockY, '#');
+    setCellValue(blockX, blockY + 1, '#');
+    setCellValue(blockX, blockY + 2, '#');
+
+    setCellValue(blockX + 1, blockY, '#');
+    setCellValue(blockX + 1, blockY + 1, '#');
+    setCellValue(blockX + 1, blockY + 2, '#');
+}
+
+
+void clearBlock() {
+    setConsoleColor(10);
+    board[blockX][blockY] = 0;
+    board[blockX][blockY + 1] = 0;
+    board[blockX][blockY + 2] = 0;
+
+    board[blockX + 1][blockY] = 0;
+    board[blockX + 1][blockY + 1] = 0;
+    board[blockX + 1][blockY + 2] = 0;
+
+
+    setCellValue(blockX, blockY, ' ');
+    setCellValue(blockX, blockY + 1, ' ');
+    setCellValue(blockX, blockY + 2, ' ');
+
+    setCellValue(blockX + 1, blockY, ' ');
+    setCellValue(blockX + 1, blockY + 1, ' ');
+    setCellValue(blockX + 1, blockY + 2, ' ');
+}
 
 
 

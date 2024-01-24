@@ -123,7 +123,28 @@ void clearBlock() {
     setCellValue(blockX + 1, blockY + 2, ' ');
 }
 
+void Bomb() {
+    setConsoleColor(9);
 
+    board[bombX][bombY] = 2;
+    board[bombX][bombY - 1] = 3;
+    board[bombX][bombY - 2] = 3;
+
+    setCellValue(bombX, bombY, '>');
+    setCellValue(bombX, bombY - 1, '-');
+    setCellValue(bombX, bombY - 2, '-');
+}
+
+void clearBomb(){
+    board[bombX][bombY] = 0;
+    board[bombX][bombY - 1] = 0;
+    board[bombX][bombY - 2] = 0;
+
+    setCellValue(bombX, bombY, ' ');
+    setCellValue(bombX, bombY - 1, ' ');
+    setCellValue(bombX, bombY - 2, ' ');
+
+}
 
 
 

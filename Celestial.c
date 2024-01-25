@@ -210,7 +210,40 @@ void playBoomSound() {
     Beep(1000, 500);
 }
 
+void main() {
+    clscreen();
+    printBoard();
+    int i, j, k;
+    srand(time(NULL));
+    planeMove = 12;
 
+    blockX = rand() % 20 + 5;
+    blockY = 72;
+
+    set();
+    getch();
+    clscreen();
+    printBoard();
+
+    while (1) {
+        set();
+        if (GetAsyncKeyState(VK_UP)) {
+            if (planeMove == 3)
+                continue;
+            if (board[planeMove - 1][3] == 0) {
+                clearPlane();
+                planeMove--;
+                Plane();
+            }
+        } else if (GetAsyncKeyState(VK_DOWN)) {
+            if (planeMove + 3 == 25)
+                continue;
+            if (board[planeMove + 5][3] == 0) {
+                clearPlane();
+                planeMove++;
+                Plane();
+            }
+        }
 
 //DYNAMIC_DRILLERS
 //SUST CSE 21

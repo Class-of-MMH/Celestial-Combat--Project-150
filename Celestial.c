@@ -245,6 +245,29 @@ void main() {
             }
         }
 
+ if (bombOn) {
+            if (board[bombX][bombY + 1] == 0) {
+                clearBomb();
+                bombY += 5;
+                Bomb();
+            }
+            if (bombY >= 75) {
+                bombOn = 0;
+                clearBomb();
+                setConsoleColor(14);
+                cursor(bombX, 76); printf("|");
+            }
+
+            if((bombX == blockX || bombX == blockX + 1) && bombY >= blockY - 2) {
+                score += 10;
+                bombOn = 0;
+                blockOn = 0;
+                playBoomSound();
+                clearBomb();
+                clearBlock();
+            }
+        }
+
 //DYNAMIC_DRILLERS
 //SUST CSE 21
 //Thank you everyone!

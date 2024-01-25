@@ -268,6 +268,45 @@ void main() {
             }
         }
 
+ if(board[blockX][blockY-1]==1 || board[blockX][blockY-2]==1 || board[blockX+1][blockY-1]==1 || board[blockX+1][blockY-2]==1){
+            playBlockHitSound();
+            gameOver();
+            break;
+        }
+
+        if (blockOn) {
+            if (board[blockX][blockY - 1] == 0) {
+                clearBlock();
+                blockY -= 1;
+                Block();
+            }
+            if(blockY <= 3){
+                clearBlock();
+				blockOn = 0;
+			}
+        }
+
+        if (blockOn == 0) {
+            clearBlock();
+            blockX = rand()%18 + 5;
+			blockY = 72;
+            Block();
+			blockOn = 1;
+        }
+
+        if (GetAsyncKeyState(VK_SPACE) && bombOn == 0) {
+            bombX = planeMove + 2;
+            bombY = 6;
+            bombOn = 1;
+            Plane(); // remove if issue occurs
+        }
+        Score();
+        Sleep(30);
+    }
+    getchar();
+
+}
+
 //DYNAMIC_DRILLERS
 //SUST CSE 21
 //Thank you everyone!

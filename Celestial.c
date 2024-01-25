@@ -210,6 +210,125 @@ void playBoomSound() {
     Beep(1000, 500);
 }
 
+void main() {
+    clscreen();
+    printBoard();
+    int i, j, k;
+    srand(time(NULL));
+    planeMove = 12;
+
+    blockX = rand() % 20 + 5;
+    blockY = 72;
+
+    set();
+    getch();
+    clscreen();
+    printBoard();
+
+    while (1) {
+        set();
+        if (GetAsyncKeyState(VK_UP)) {
+            if (planeMove == 3)
+                continue;
+            if (board[planeMove - 1][3] == 0) {
+                clearPlane();
+                planeMove--;
+                Plane();
+            }
+        } else if (GetAsyncKeyState(VK_DOWN)) {
+            if (planeMove + 3 == 25)
+                continue;
+            if (board[planeMove + 5][3] == 0) {
+                clearPlane();
+                planeMove++;
+                Plane();
+            }
+        }
+
+ if (bombOn) {
+            if (board[bombX][bombY + 1] == 0) {
+                clearBomb();
+                bombY += 5;
+                Bomb();
+            }
+            if (bombY >= 75) {
+                bombOn = 0;
+                clearBomb();
+                setConsoleColor(14);
+                cursor(bombX, 76); printf("|");
+            }
+
+            if((bombX == blockX || bombX == blockX + 1) && bombY >= blockY - 2) {
+                score += 10;
+                bombOn = 0;
+                blockOn = 0;
+                playBoomSound();
+                clearBomb();
+                clearBlock();
+            }
+        }
+
+ if(board[blockX][blockY-1]==1 || board[blockX][blockY-2]==1 || board[blockX+1][blockY-1]==1 || board[blockX+1][blockY-2]==1){
+            playBlockHitSound();
+            gameOver();
+            break;
+        }
+
+        if (blockOn) {
+            if (board[blockX][blockY - 1] == 0) {
+                clearBlock();
+                blockY -= 1;
+                Block();
+            }
+            if(blockY <= 3){
+                clearBlock();
+				blockOn = 0;
+			}
+        }
+
+        if (blockOn == 0) {
+            clearBlock();
+            blockX = rand()%18 + 5;
+			blockY = 72;
+            Block();
+			blockOn = 1;
+        }
+
+        if (GetAsyncKeyState(VK_SPACE) && bombOn == 0) {
+            bombX = planeMove + 2;
+            bombY = 6;
+            bombOn = 1;
+            Plane(); // remove if issue occurs
+        }
+        Score();
+        Sleep(30);
+    }
+    getchar();
+
+}
+
+void clscreen(){
+    COORD topLeft  = { 0, 0 };
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO screen;
+    DWORD written;
+
+    GetConsoleScreenBufferInfo(console, &screen);
+    FillConsoleOutputCharacterA(
+        console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    FillConsoleOutputAttribute(
+        console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+        screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    SetConsoleCursorPosition(console, topLeft);
+}
+
+
+void cursor(int row, int col){
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), (COORD){col, row});
+}
+
 
 
 //DYNAMIC_DRILLERS

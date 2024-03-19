@@ -2,6 +2,22 @@
 #include<time.h>
 #include<conio.h>
 #include<windows.h>
+#define MAX_SCORES 5
+#define MAX_NAME_LENGTH 20
+
+typedef struct {
+    char name[MAX_NAME_LENGTH];
+    int score;
+} ScoreEntry;
+
+ScoreEntry highScores[MAX_SCORES];
+
+
+void saveHighScores();
+void loadHighScores();
+void updateHighScores(int score, const char *name);
+void printHighScores();
+
 
 int board[26][76], planeMove, bombY, bombX, bombOn = 0;
 int blockOn = 0, blockY, blockX, score = 0;
@@ -16,10 +32,13 @@ void setConsoleColor(int color) {
     SetConsoleTextAttribute(hConsole, color);
 }
 
+
 void setCellValue(int planeRow, int col, char val){
     cursor(planeRow, col);
     printf("%c", val);
-}	
+}
+
+
 void clearPlane(){
     board[planeMove][3] = 1;
 
@@ -210,7 +229,8 @@ void playBoomSound() {
     Beep(1000, 500);
 }
 
-void main() {
+int main() {
+    loadHighScores();
     clscreen();
     printBoard();
     int i, j, k;
@@ -282,30 +302,85 @@ void main() {
             }
             if(blockY <= 3){
                 clearBlock();
-				blockOn = 0;
+		blockOn = 0;
 			}
         }
 
         if (blockOn == 0) {
             clearBlock();
             blockX = rand()%18 + 5;
-			blockY = 72;
+		blockY = 72;
             Block();
-			blockOn = 1;
+		blockOn = 1;
         }
 
         if (GetAsyncKeyState(VK_SPACE) && bombOn == 0) {
             bombX = planeMove + 2;
             bombY = 6;
             bombOn = 1;
-            Plane(); // remove if issue occurs
+            Plane(); 
         }
         Score();
         Sleep(30);
     }
+ char playername[MAX_NAME_LENGTH];
+    printf("Enter your name : ");
+    scanf("%s",playername);
+    updateHighScores(score, playername); 
+    saveHighScores();
+    printHighScores();
+
     getchar();
+    return 0;
 
 }
+
+void loadHighScores() {
+    FILE *file = fopen("highscores.txt", "r");
+    if (file == NULL) {
+        printf("Error opening file for reading. Initializing high scores.\n");
+        // Initialize high scores with default values
+        for (int i = 0; i < MAX_SCORES; i++) {
+            strcpy(highScores[i].name, "Unknown");
+            highScores[i].score = 0;
+        }
+        return;
+    }
+
+    for (int i = 0; i < MAX_SCORES; i++) {
+        if (fscanf(file, "%s %d", highScores[i].name, &highScores[i].score) != 2) {
+            printf("Error reading high scores from file.\n");
+            break;
+        }
+    }
+
+    fclose(file);
+}
+
+void updateHighScores(int score, const char *name) {
+    int i, j;
+    for (i = 0; i < MAX_SCORES; i++) {
+        if (score > highScores[i].score) {
+            // Shift lower scores down
+            for (j = MAX_SCORES - 1; j > i; j--) {
+                strcpy(highScores[j].name, highScores[j - 1].name);
+                highScores[j].score = highScores[j - 1].score;
+            }
+            // Insert new score
+            strcpy(highScores[i].name, name);
+            highScores[i].score = score;
+            break;
+        }
+    }
+}
+
+void printHighScores() {
+    printf("\nHigh Scores:\n");
+    for (int i = 0; i < MAX_SCORES; i++) {
+        printf("%d. %s - %d\n", i + 1, highScores[i].name, highScores[i].score);
+    }
+}
+
 
 void clscreen(){
     COORD topLeft  = { 0, 0 };

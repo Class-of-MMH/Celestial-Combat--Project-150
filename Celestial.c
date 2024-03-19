@@ -32,12 +32,10 @@ void setConsoleColor(int color) {
     SetConsoleTextAttribute(hConsole, color);
 }
 
-
 void setCellValue(int planeRow, int col, char val){
     cursor(planeRow, col);
     printf("%c", val);
 }
-
 
 void clearPlane(){
     board[planeMove][3] = 1;
@@ -98,6 +96,7 @@ void Plane() {
     setCellValue(planeMove + 3, 4, '*');
 
     setCellValue(planeMove + 4, 3, '*');
+
 
 }
 
@@ -265,7 +264,7 @@ int main() {
             }
         }
 
- if (bombOn) {
+        if (bombOn) {
             if (board[bombX][bombY + 1] == 0) {
                 clearBomb();
                 bombY += 5;
@@ -288,7 +287,7 @@ int main() {
             }
         }
 
- if(board[blockX][blockY-1]==1 || board[blockX][blockY-2]==1 || board[blockX+1][blockY-1]==1 || board[blockX+1][blockY-2]==1){
+        if(board[blockX][blockY-1]==1 || board[blockX][blockY-2]==1 || board[blockX+1][blockY-1]==1 || board[blockX+1][blockY-2]==1){
             playBlockHitSound();
             gameOver();
             break;
@@ -302,16 +301,16 @@ int main() {
             }
             if(blockY <= 3){
                 clearBlock();
-		blockOn = 0;
+				blockOn = 0;
 			}
         }
 
         if (blockOn == 0) {
             clearBlock();
             blockX = rand()%18 + 5;
-		blockY = 72;
+			blockY = 72;
             Block();
-		blockOn = 1;
+			blockOn = 1;
         }
 
         if (GetAsyncKeyState(VK_SPACE) && bombOn == 0) {
@@ -323,7 +322,7 @@ int main() {
         Score();
         Sleep(30);
     }
- char playername[MAX_NAME_LENGTH];
+    char playername[MAX_NAME_LENGTH];
     printf("Enter your name : ");
     scanf("%s",playername);
     updateHighScores(score, playername); 
@@ -333,6 +332,19 @@ int main() {
     getchar();
     return 0;
 
+}
+void saveHighScores() {
+    FILE *file = fopen("highscores.txt", "w");
+    if (file == NULL) {
+        printf("Error opening file for writing.\n");
+        return;
+    }
+
+    for (int i = 0; i < MAX_SCORES; i++) {
+        fprintf(file, "%s %d\n", highScores[i].name, highScores[i].score);
+    }
+
+    fclose(file);
 }
 
 void loadHighScores() {
@@ -403,6 +415,8 @@ void cursor(int row, int col){
 
 
 
+
+
+//Thank_u_everyone!
 //DYNAMIC_DRILLERS
 //SUST CSE 21
-//Thank you everyone!

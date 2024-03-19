@@ -339,7 +339,6 @@ void loadHighScores() {
     FILE *file = fopen("highscores.txt", "r");
     if (file == NULL) {
         printf("Error opening file for reading. Initializing high scores.\n");
-        // Initialize high scores with default values
         for (int i = 0; i < MAX_SCORES; i++) {
             strcpy(highScores[i].name, "Unknown");
             highScores[i].score = 0;
@@ -361,12 +360,10 @@ void updateHighScores(int score, const char *name) {
     int i, j;
     for (i = 0; i < MAX_SCORES; i++) {
         if (score > highScores[i].score) {
-            // Shift lower scores down
             for (j = MAX_SCORES - 1; j > i; j--) {
                 strcpy(highScores[j].name, highScores[j - 1].name);
                 highScores[j].score = highScores[j - 1].score;
             }
-            // Insert new score
             strcpy(highScores[i].name, name);
             highScores[i].score = score;
             break;
